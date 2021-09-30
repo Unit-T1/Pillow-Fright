@@ -1,0 +1,74 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControls : MonoBehaviour {
+
+	public float maxSpeed = 3f;		//Determines player speed
+	public float sprintFactor = 2f;	//Determines how fast sprinting is
+	public float speed = 50f;		//Determines player speed
+	public float jumpPower = 200f;	//Determines jump height
+
+	public bool grounded;	//Checks for contact with ground
+	public bool sprinting;	//Checks if player is sprinting
+
+	private Rigidbody2D rb;
+	private Animator anim;
+
+
+	// Start is called before the first frame update
+	void Start()
+    {
+		rb = gameObject.GetComponent<Rigidbody2D>();	//store rigidbody component
+		anim = gameObject.GetComponent<Animator>();		//store animation component (for later)
+	}
+
+    // Update is called once per frame
+    void Update()
+    {
+		//Jump
+		if (Input.GetKeyDown(KeyCode.Z) && grounded)
+		{
+			rb.AddForce(Vector2.up * jumpPower);
+		}
+
+		//Control Jump Height
+		if (Input.GetKeyUp(KeyCode.Z) && rb.velocity.y >= 0.1)
+		{
+			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2); //Slows down y-axis momentum
+		}
+
+        //Sprint
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+			maxSpeed = maxSpeed * sprintFactor;
+			speed = speed * sprintFactor;
+			sprinting = true;
+        }
+		if (Input.GetKeyUp(KeyCode.LeftShift))
+		{
+			maxSpeed = maxSpeed / sprintFactor;
+			speed = speed / sprintFactor;
+			sprinting = false;
+		}
+
+	}
+
+	void FixedUpdate() //More Physics-based movement
+	{
+		Vector3 easeVelocity = rb.velocity;
+		easeVelocity.y = rb.velocity.y;
+		easeVelocity.z = 0.0f;
+		easeVelocity.x *= 0.75f;
+
+		float h = Input.GetAxis("Horizontal"); // Direction (Left/Right)
+
+		if (grounded)
+			rb.velocity = easeVelocity;
+
+		rb.AddForce((Vector2.right * speed) * h); //Increases speed
+
+		rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y);
+	}
+
+}
