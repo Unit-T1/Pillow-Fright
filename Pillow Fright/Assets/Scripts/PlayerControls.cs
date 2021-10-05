@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour {
 
-	public float maxSpeed = 3f;		//Determines player speed
+	public float maxSpeed = 3f;		//Limits player's air mobility?
 	public float sprintFactor = 2f;	//Determines how fast sprinting is
 	public float speed = 50f;		//Determines player speed
 	public float jumpPower = 200f;	//Determines jump height
@@ -15,25 +15,24 @@ public class PlayerControls : MonoBehaviour {
 	private Rigidbody2D rb;
 	private Animator anim;
 
-
-	// Start is called before the first frame update
 	void Start()
     {
 		rb = gameObject.GetComponent<Rigidbody2D>();	//store rigidbody component
 		anim = gameObject.GetComponent<Animator>();		//store animation component (for later)
 	}
 
-    // Update is called once per frame
     void Update()
     {
+		//Movement -----------------------------------------------------------
+
 		//Jump
-		if (Input.GetKeyDown(KeyCode.Z) && grounded)
+		if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow)) && grounded)
 		{
 			rb.AddForce(Vector2.up * jumpPower);
 		}
 
 		//Control Jump Height
-		if (Input.GetKeyUp(KeyCode.Z) && rb.velocity.y >= 0.1)
+		if ((Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.UpArrow)) && rb.velocity.y >= 0.1)
 		{
 			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2); //Slows down y-axis momentum
 		}
@@ -68,7 +67,7 @@ public class PlayerControls : MonoBehaviour {
 
 		rb.AddForce((Vector2.right * speed) * h); //Increases speed
 
-		rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y);
+		rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y); //Limits the player's speed
 	}
 
 }
