@@ -2315,7 +2315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00010681152}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
   m_SizeDelta: {x: 14.407303, y: 10.291016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &685393086
@@ -2449,10 +2449,10 @@ RectTransform:
   m_Father: {fileID: 1876576430}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -463, y: -223}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 104.77136, y: 54.06839}
+  m_SizeDelta: {x: 1790.7725, y: 941.9321}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1006571868
 MonoBehaviour:
@@ -2487,7 +2487,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Move = Arrows
+  m_Text: 'Controls:
+
+    Move = Arrows
 
     Jump = Z or Up
 
@@ -2754,10 +2756,10 @@ RectTransform:
   m_Father: {fileID: 1876576430}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -435, y: 104}
-  m_SizeDelta: {x: 32.5396, y: 303.0492}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 49.27, y: -177}
+  m_SizeDelta: {x: 32.53961, y: 303.0492}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805939745
 MonoBehaviour:
@@ -2840,7 +2842,7 @@ GameObject:
   - component: {fileID: 1876576428}
   - component: {fileID: 1876576427}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2875,12 +2877,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2962,8 +2964,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47, y: 153}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 228.02191, y: 92.112854}
+  m_SizeDelta: {x: 3780.435, y: 1247.7458}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2078187416
 MonoBehaviour:
@@ -2998,16 +3000,19 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '1 = Increase Meter by 20
+  m_Text: 'Meter Functions:
 
-    2 = Decrease Meter by 20
+    1 = Increase Meter by 20
 
-    3 = Reset
-    Meter
+    2 = Decrease Meter
+    by 20
+
+    3 = Reset Meter
 
     4 = Toggle Safe Zone (Meter goes down)
 
-    5 = Stop/Start Meter buildup'
+    5
+    = Stop/Start Meter buildup'
 --- !u!222 &2078187417
 CanvasRenderer:
   m_ObjectHideFlags: 0
