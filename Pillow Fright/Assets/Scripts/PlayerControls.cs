@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour {
 
-	public float maxSpeed = 3f;		//Limits player's air mobility?
-	public float sprintFactor = 2f;	//Determines how fast sprinting is
-	public float speed = 50f;		//Determines player speed
-	public float jumpPower = 200f;	//Determines jump height
+	public float maxSpeed = 3f;		    //Limits player speed (mostly in the air)
+	public float sprintFactor = 2f; 	//Determines how fast sprinting is
+	public float speed = 50f;		    //Determines player speed
+	public float jumpPower = 200f;	    //Determines jump height
 
-	public bool grounded;	//Checks for contact with ground
-	public bool sprinting;	//Checks if player is sprinting
+	public bool grounded;           	//Checks for contact with ground
+	public bool sprinting;          	//Checks if player is sprinting
+    public bool hasPillow;              //Checks if player has pillow
 
 	private Rigidbody2D rb;
 	private Animator anim;
 
 	void Start()
     {
+        hasPillow = false;
 		rb = gameObject.GetComponent<Rigidbody2D>();	//store rigidbody component
 		anim = gameObject.GetComponent<Animator>();		//store animation component (for later)
 	}
 
     void Update()
     {
-		//Movement -----------------------------------------------------------
+		//------------------ Movement -------------------------------
 
 		//Jump
 		if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow)) && grounded)
 		{
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
 			rb.AddForce(Vector2.up * jumpPower);
 		}
 
@@ -51,6 +54,26 @@ public class PlayerControls : MonoBehaviour {
 			sprinting = false;
 		}
 
+        //----------------- Fighting --------------------------------
+        if (hasPillow)
+        {
+            //Ground Melee
+            if (Input.GetKeyDown(KeyCode.X) && grounded)
+            {
+
+            }
+            //Air Melee
+            if(Input.GetKeyDown(KeyCode.X) && !grounded)
+            {
+
+            }
+            //Ranged AttacK?
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+
+            }
+        }
+
 	}
 
 	void FixedUpdate() //More Physics-based movement
@@ -70,4 +93,10 @@ public class PlayerControls : MonoBehaviour {
 		rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y); //Limits the player's speed
 	}
 
+    public void gotPillow()
+    {
+        //play sound
+        //player animation
+        hasPillow = true;
+    }
 }

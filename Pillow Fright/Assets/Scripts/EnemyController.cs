@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : PhysicsBase
+public class EnemyController : MonoBehaviour
 {
     //[SerializeField] float moveSpeed = 1f;
     //Rigidbody2D enemyRB;
@@ -24,23 +24,25 @@ public class EnemyController : PhysicsBase
         MoveToNextPoint();
     }
 
+    /*
     public override void CollideHorizontal(Collider2D other)
     {
         desiredx = -desiredx;
     }
+    */
 
     void MoveToNextPoint()
     {
         Transform goalPoint = points[nextID];
         // Flip enemy direction 
         if(goalPoint.transform.position.x > transform.position.x)
-            transform.localScale = new Vector3(-1, 0.5f, 1);
+            transform.localScale = new Vector3(-1, 1.0f, 1);
         else
-            transform.localScale = new Vector3(1, 0.5f, 1);
+            transform.localScale = new Vector3(1, 1.0f, 1);
         // Move enemy to target
         transform.position = Vector2.MoveTowards(transform.position, goalPoint.position, speed*Time.deltaTime);
         // Check the distance betwen enemy and goal point to trigger next point
-        if(Vector2.Distance(transform.position, goalPoint.position) < 1f)
+        if(Vector2.Distance(transform.position, goalPoint.position) < 0.01f)
         {
             // check if reached the target 
             if(nextID == points.Count - 1)

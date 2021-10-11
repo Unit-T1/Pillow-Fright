@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class DarkMeter : MonoBehaviour
 {
-    public float maxValue = 100f;
+    public float maxValue = 100f;       //Maximum meter value
     public float rate = 0.05f;          //rate at which the meter fills up (per frame)
-    public bool inSafeZone = false;
+    public bool inSafeZone = false;     //Checks whether player is in a safezone
     public float safeRatio = 1.5f;      //adjusts recovery speed factor
-    public bool isPaused = false;
-    private bool lerping = false;
+    public bool isPaused = false;       //pauses the meter if necessary
+    public float lerpDuration = 1f;     //Determines the duration of the lerp animation (in sec)
 
     private Slider slider;
 
@@ -24,6 +24,7 @@ public class DarkMeter : MonoBehaviour
 
     void Update()
     {
+        //Debug Checks
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             //addMeter(20);
@@ -51,12 +52,14 @@ public class DarkMeter : MonoBehaviour
     {
         if (!isPaused)
         {
+            //constantly fills or empties meter depending on the rate and safezone check
             if (!inSafeZone)
                 Mathf.Clamp(slider.value += rate, 0, maxValue);
             else
                 Mathf.Clamp(slider.value -= (rate * safeRatio), 0, maxValue); 
         }
 
+        //Slider Max Check
         if (slider.value >= maxValue)
         {
             //Game Over?
@@ -80,9 +83,9 @@ public class DarkMeter : MonoBehaviour
     //Functions found here: https://www.febucci.com/2018/08/easing-functions/
     IEnumerator addMeter2(float value)
     {
+        bool lerping = false;
         if (!lerping)
         {
-            float lerpDuration = 1f;
             float start = slider.value;
             float end = Mathf.Clamp(slider.value + value, 0, maxValue);
             float timeElapsed = 0f;
