@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -7,11 +8,10 @@ public class EnemyController : MonoBehaviour
     //[SerializeField] float moveSpeed = 1f;
     //Rigidbody2D enemyRB;
 
-    public List<Transform> points;
+    public List<Vector3> points;
     public int nextID = 0;
     int idChangeValue = 1;
     public float speed = 2;
-    
 
     void Start()
     {
@@ -33,16 +33,16 @@ public class EnemyController : MonoBehaviour
 
     void MoveToNextPoint()
     {
-        Transform goalPoint = points[nextID];
+        Vector3 goalPoint = points[nextID];
         // Flip enemy direction 
-        if(goalPoint.transform.position.x > transform.position.x)
-            transform.localScale = new Vector3(-1, 1.0f, 1);
+        if (goalPoint.x > transform.position.x)
+            GetComponent<SpriteRenderer>().flipX = false;
         else
-            transform.localScale = new Vector3(1, 1.0f, 1);
+            GetComponent<SpriteRenderer>().flipX = true;
         // Move enemy to target
-        transform.position = Vector2.MoveTowards(transform.position, goalPoint.position, speed*Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, goalPoint, speed*Time.deltaTime);
         // Check the distance betwen enemy and goal point to trigger next point
-        if(Vector2.Distance(transform.position, goalPoint.position) < 0.01f)
+        if(Vector2.Distance(transform.position, goalPoint) < 0.01f)
         {
             // check if reached the target 
             if(nextID == points.Count - 1)
@@ -52,6 +52,33 @@ public class EnemyController : MonoBehaviour
                 idChangeValue = 1;
             }
             nextID += idChangeValue;
+        }
+    }
+
+    public void addCurrentPosition()
+    {
+        Vector3 position = new Vector3();
+        position = GetComponent<Transform>().position;
+        position.x = Mathf.Round(position.x * 2f) * 0.5f;
+        position.y = Mathf.Round(position.y * 2f) * 0.5f;
+        position.z = Mathf.Round(position.z * 2f) * 0.5f;
+        points.Add(position);
+        Debug.Log("Added Position: " + position);
+    }
+
+}
+
+[CustomEditor(typeof(EnemyController))]
+public class EnemyControllerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        EnemyController EC = (EnemyController)target;
+        if (GUILayout.Button("Add Current Position"))
+        {
+            EC.addCurrentPosition();
         }
     }
 }
