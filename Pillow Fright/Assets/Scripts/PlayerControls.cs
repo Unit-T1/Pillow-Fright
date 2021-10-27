@@ -152,9 +152,9 @@ public class PlayerControls : MonoBehaviour {
 		if (!attacking)
 		{
 			if (h < 0)
-				GetComponent<SpriteRenderer>().flipX = true;
-			else if (h >= 0)
-				GetComponent<SpriteRenderer>().flipX = false;
+				transform.localScale = new Vector3(-1, 1, 1);
+			else if (h > 0)
+				transform.localScale = new Vector3(1, 1, 1);
 		}
 	}
 
@@ -174,9 +174,14 @@ public class PlayerControls : MonoBehaviour {
 		attackDuration = duration;
 		anim.SetInteger("attack num", attackNum);       //start next attack
 
-		if (GetComponent<SpriteRenderer>().flipX == true)	//move forward a bit when attacking
+		if (transform.localScale.x == -1)	//move forward a bit when attacking
 			rb.AddForce(new Vector2(-force, 0));
 		else
 			rb.AddForce(new Vector2(force, 0));
 	}
+
+	public int getAttackNum()
+    {
+		return anim.GetInteger("attack num");
+    }
 }

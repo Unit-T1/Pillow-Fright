@@ -32,7 +32,7 @@ public class FloatingItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         //Pillow Item
-        if (name == "Pillow")
+        if (name == "Pillow Item")
         {
             if (col.tag == "Player")
             {

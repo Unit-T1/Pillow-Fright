@@ -8,7 +8,9 @@ public class EnemyController : MonoBehaviour
     //[SerializeField] float moveSpeed = 1f;
     //Rigidbody2D enemyRB;
 
-    public List<Vector3> points;
+    public int health = 100;
+
+    [SerializeField] List<Vector3> points;
     public int nextID = 0;
     int idChangeValue = 1;
     public float speed = 2;
@@ -22,6 +24,11 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         MoveToNextPoint();
+
+        if(health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     /*
@@ -66,7 +73,16 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Added Position: " + position);
     }
 
+    public void damage(int damage)
+    {
+        health -= damage;
+    }
+
 }
+
+
+
+
 
 [CustomEditor(typeof(EnemyController))]
 public class EnemyControllerEditor : Editor
