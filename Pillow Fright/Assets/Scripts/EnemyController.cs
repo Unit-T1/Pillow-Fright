@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class EnemyController : MonoBehaviour
 {
     //[SerializeField] float moveSpeed = 1f;
@@ -25,21 +24,19 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         MoveToNextPoint();
-<<<<<<< Updated upstream
 
         if(health <= 0)
         {
             Destroy(this.gameObject);
         }
     }
-=======
->>>>>>> Stashed changes
 
-        if(health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+    /*
+    public override void CollideHorizontal(Collider2D other)
+    {
+        desiredx = -desiredx;
     }
+    */
 
     void MoveToNextPoint()
     {
@@ -65,20 +62,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Reset()
-    {
-        GetComponent<BoxCollider2D>().isTrigger = true;
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "Player")
-        {
-            Debug.Log($"{name} Triggered");
-            FindObjectOfType<HeartBar>().LoseLife();
-        }
-    }
-
     public void addCurrentPosition()
     {
         Vector3 position = new Vector3();
@@ -89,23 +72,12 @@ public class EnemyController : MonoBehaviour
         points.Add(position);
         Debug.Log("Added Position: " + position);
     }
-<<<<<<< HEAD
-=======
 
     public void damage(int damage)
     {
         health -= damage;
     }
 
-<<<<<<< Updated upstream
-    public void damage(int damage)
-    {
-        health -= damage;
-    }
-
-=======
->>>>>>> 71ac753605c281be15f5f4557c55c1cfddd99d2f
->>>>>>> Stashed changes
 }
 
 

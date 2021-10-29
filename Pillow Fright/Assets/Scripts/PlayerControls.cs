@@ -12,7 +12,6 @@ public class PlayerControls : MonoBehaviour {
 	public bool grounded;           	//Checks for contact with ground
 	public bool sprinting;          	//Checks if player is sprinting
     public bool hasPillow;              //Checks if player has pillow
-	public bool noLife;					//Checks if player is dead
 
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -181,21 +180,8 @@ public class PlayerControls : MonoBehaviour {
 			rb.AddForce(new Vector2(force, 0));
 	}
 
-<<<<<<< Updated upstream
 	public int getAttackNum()
     {
 		return anim.GetInteger("attack num");
-=======
-<<<<<<< HEAD
-	public void isDead()
-    {
-		noLife = true;
-		FindObjectOfType<LevelAdministrator>().Restart();
-=======
-	public int getAttackNum()
-    {
-		return anim.GetInteger("attack num");
->>>>>>> 71ac753605c281be15f5f4557c55c1cfddd99d2f
->>>>>>> Stashed changes
     }
 }
