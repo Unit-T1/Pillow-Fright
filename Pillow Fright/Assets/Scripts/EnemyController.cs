@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))] 
 public class EnemyController : MonoBehaviour
 {
     //[SerializeField] float moveSpeed = 1f;
@@ -17,7 +18,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        //desiredx = 3;
+        
     }
 
     // Update is called once per frame
@@ -30,13 +31,6 @@ public class EnemyController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    /*
-    public override void CollideHorizontal(Collider2D other)
-    {
-        desiredx = -desiredx;
-    }
-    */
 
     void MoveToNextPoint()
     {
@@ -61,6 +55,23 @@ public class EnemyController : MonoBehaviour
             nextID += idChangeValue;
         }
     }
+
+    private void Reset()
+    {
+        GetComponent<BoxCollider2D>().isTrigger = true;
+    }
+
+
+    // Damage player
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            //Debug.Log($"{name} Triggered");
+            FindObjectOfType<HealthBar>().LoseLife();
+        }
+    }
+
 
     public void addCurrentPosition()
     {

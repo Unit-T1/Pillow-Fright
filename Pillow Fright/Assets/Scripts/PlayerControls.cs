@@ -12,6 +12,7 @@ public class PlayerControls : MonoBehaviour {
 	public bool grounded;           	//Checks for contact with ground
 	public bool sprinting;          	//Checks if player is sprinting
     public bool hasPillow;              //Checks if player has pillow
+	public bool noLife;					//Checks if player is dead
 
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -184,4 +185,10 @@ public class PlayerControls : MonoBehaviour {
     {
 		return anim.GetInteger("attack num");
     }
+
+	public void isDead()
+	{
+		noLife = true;
+		FindObjectOfType<LevelAdministrator>().Restart();
+	}
 }
