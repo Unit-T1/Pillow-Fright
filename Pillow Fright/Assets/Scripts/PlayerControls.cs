@@ -12,7 +12,8 @@ public class PlayerControls : MonoBehaviour {
 	public bool grounded;           	//Checks for contact with ground
 	public bool sprinting;          	//Checks if player is sprinting
     public bool hasPillow;              //Checks if player has pillow
-	public bool noLife;					//Checks if player is dead
+	public bool noLife;                 //Checks if player is dead
+	public bool isInvulnerable;
 
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -22,11 +23,18 @@ public class PlayerControls : MonoBehaviour {
 	public bool attacking = false;
 	public bool movement = true;
 
+	public Renderer myRender;
+	public Color myColor;
+
 	void Start()
     {
+		isInvulnerable = false;
+		noLife = false;
         hasPillow = false;
 		rb = gameObject.GetComponent<Rigidbody2D>();	//store rigidbody component
-		anim = gameObject.GetComponent<Animator>();		//store animation component
+		anim = gameObject.GetComponent<Animator>();     //store animation component
+		myRender = GetComponent<Renderer>();	
+		myColor = myRender.material.color;
 	}
 
 	void Update()
@@ -190,5 +198,38 @@ public class PlayerControls : MonoBehaviour {
 	{
 		noLife = true;
 		FindObjectOfType<LevelAdministrator>().Restart();
+		noLife = false;
+	}
+
+    // Invunerable and taking damage
+    void OnTriggerEnter2D(Collider2D col)
+    {
+		if (col.tag == "Enemy" && noLife == false)
+			takeDamage();
+
+	}
+
+	public void takeDamage()
+    {
+		FindObjectOfType<HealthBar>().LoseLife();
+		StartCoroutine("getInvulnerable");
+	}
+
+	public IEnumerator getInvulnerable()
+    {
+		//yield return new WaitForSeconds(.01f);
+		isInvulnerable = true;
+		for (int i = 0; i < 15; i++)
+        {
+			Physics2D.IgnoreLayerCollision(6, 7, true);
+			myColor.a = 0.5f;
+			myRender.material.color = myColor;
+			yield return new WaitForSeconds(.1f);
+			myColor.a = 1f;
+			myRender.material.color = myColor;
+			yield return new WaitForSeconds(.1f);
+		}
+		Physics2D.IgnoreLayerCollision(6, 7, false);
+		isInvulnerable = false;
 	}
 }

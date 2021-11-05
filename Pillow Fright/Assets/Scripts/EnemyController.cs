@@ -63,6 +63,7 @@ public class EnemyController : MonoBehaviour
 
 
     // Damage player
+    /*
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Player")
@@ -71,7 +72,7 @@ public class EnemyController : MonoBehaviour
             FindObjectOfType<HealthBar>().LoseLife();
         }
     }
-
+    */
 
     public void addCurrentPosition()
     {

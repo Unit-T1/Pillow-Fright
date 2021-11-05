@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 133634583}
   - component: {fileID: 133634582}
   - component: {fileID: 133634584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pillow Hurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 322638094}
   - component: {fileID: 322638093}
   - component: {fileID: 322638096}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy1 (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3115,7 +3115,7 @@ GameObject:
   - component: {fileID: 1363223231}
   - component: {fileID: 1363223226}
   - component: {fileID: 1363223232}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3412,7 +3412,7 @@ GameObject:
   - component: {fileID: 1478802108}
   - component: {fileID: 1478802107}
   - component: {fileID: 1478802106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy1 (4)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3749,7 +3749,7 @@ GameObject:
   - component: {fileID: 1780773788}
   - component: {fileID: 1780773790}
   - component: {fileID: 1780773789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grounded Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3925,7 +3925,7 @@ GameObject:
   - component: {fileID: 1867358791}
   - component: {fileID: 1867358790}
   - component: {fileID: 1867358793}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy1 (3)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4062,7 +4062,7 @@ GameObject:
   - component: {fileID: 1897823174}
   - component: {fileID: 1897823173}
   - component: {fileID: 1897823176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy1 (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}

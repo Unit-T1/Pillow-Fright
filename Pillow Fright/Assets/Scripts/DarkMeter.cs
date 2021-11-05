@@ -60,12 +60,21 @@ public class DarkMeter : MonoBehaviour
         }
 
         //Slider Max Check
-        if (slider.value >= maxValue)
+        if (slider.value >= maxValue && !FindObjectOfType<PlayerControls>().isInvulnerable)
         {
             //Game Over?
-            Debug.Log("Meter at Max!");
+            //taking damange when dark meter is filled
+            FindObjectOfType<PlayerControls>().takeDamage();
+            //Debug.Log("Meter at Max!");
         }
 
+    }
+
+    public bool isMeterFilled()
+    {
+        if (slider.value >= maxValue)
+            return true;
+        return false;
     }
 
 

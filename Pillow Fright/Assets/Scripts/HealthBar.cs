@@ -30,6 +30,7 @@ public class HealthBar : LevelAdministrator
         }
         // Decrement life
         lives--;
+            
         // if there are more lives then the limit, then set lives to the limit
         if (lives > numOfLives)
         {
