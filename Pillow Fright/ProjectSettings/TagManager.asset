@@ -8,6 +8,7 @@ TagManager:
   - Candle
   - Ground
   - Enemy
+  - Dream Catcher
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
+  - Pillow
   - 
   - 
   - 

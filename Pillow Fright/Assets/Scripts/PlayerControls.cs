@@ -10,8 +10,8 @@ public class PlayerControls : MonoBehaviour {
 	public float jumpPower = 200f;	    //Determines jump height
 
 	public bool grounded;           	//Checks for contact with ground
-	public bool sprinting;          	//Checks if player is sprinting
-    public bool hasPillow;              //Checks if player has pillow
+	//bool sprinting;          			//Checks if player is sprinting
+    bool hasPillow;						//Checks if player has pillow
 	public bool noLife;                 //Checks if player is dead
 	public bool isInvulnerable;
 
@@ -20,11 +20,11 @@ public class PlayerControls : MonoBehaviour {
 
 	//float attackCD = 0.0f;
 	float attackDuration = 0.0f;
-	public bool attacking = false;
-	public bool movement = true;
+	bool attacking = false;
+	bool movement = true;
 
-	public Renderer myRender;
 	public Color myColor;
+	public SpriteRenderer myRender;
 
 	void Start()
     {
@@ -33,7 +33,7 @@ public class PlayerControls : MonoBehaviour {
         hasPillow = false;
 		rb = gameObject.GetComponent<Rigidbody2D>();	//store rigidbody component
 		anim = gameObject.GetComponent<Animator>();     //store animation component
-		myRender = GetComponent<Renderer>();	
+		myRender = GetComponent<SpriteRenderer>();	
 		myColor = myRender.material.color;
 	}
 
@@ -61,14 +61,14 @@ public class PlayerControls : MonoBehaviour {
 		{
 			maxSpeed = maxSpeed * sprintFactor;
 			speed = speed * sprintFactor;
-			sprinting = true;
+			//sprinting = true;
 			anim.SetBool("sprinting", true);
 		}
 		if (Input.GetKeyUp(KeyCode.LeftShift))
 		{
 			maxSpeed = maxSpeed / sprintFactor;
 			speed = speed / sprintFactor;
-			sprinting = false;
+			//sprinting = false;
 			anim.SetBool("sprinting", false);
 		}
 
@@ -183,7 +183,7 @@ public class PlayerControls : MonoBehaviour {
 		attackDuration = duration;
 		anim.SetInteger("attack num", attackNum);       //start next attack
 
-		if (transform.localScale.x == -1)	//move forward a bit when attacking
+		if (transform.localScale.x == -1)				//move forward a bit when attacking
 			rb.AddForce(new Vector2(-force, 0));
 		else
 			rb.AddForce(new Vector2(force, 0));
@@ -211,8 +211,11 @@ public class PlayerControls : MonoBehaviour {
 
 	public void takeDamage()
     {
-		FindObjectOfType<HealthBar>().LoseLife();
-		StartCoroutine("getInvulnerable");
+		if (!isInvulnerable)
+		{
+			FindObjectOfType<HealthBar>().LoseLife();
+			StartCoroutine("getInvulnerable");
+		}
 	}
 
 	public IEnumerator getInvulnerable()

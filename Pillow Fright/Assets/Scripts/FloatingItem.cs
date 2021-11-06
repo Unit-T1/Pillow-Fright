@@ -10,12 +10,13 @@ public class FloatingItem : MonoBehaviour
     private Vector3 startPos;
     private Vector3 endPos;
 
-    public PlayerControls player;
+    private GameObject player;
 
     void Start()
     {
         startPos = transform.position;
         endPos = transform.position + new Vector3(0, floatDistance);
+        player = GameObject.Find("Player");
     }
 
     private void Update()
@@ -32,11 +33,21 @@ public class FloatingItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         //Pillow Item
-        if (name == "Pillow Item")
+        if (name == "Pillow Item" || name == "Pillow")
         {
             if (col.tag == "Player")
             {
-                player.gotPillow();
+                player.GetComponent<PlayerControls>().gotPillow();
+                Destroy(this.gameObject);
+            }
+        }
+
+        //Dream Catcher
+        if(tag == "Dream Catcher")
+        {
+            if(col.tag == "Player")
+            {
+                player.GetComponent<DreamCatcher>().gotDreamCatcher();
                 Destroy(this.gameObject);
             }
         }
