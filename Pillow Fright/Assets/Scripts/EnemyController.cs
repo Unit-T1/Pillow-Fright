@@ -96,17 +96,15 @@ public class EnemyController : MonoBehaviour
 
 
 
-[CustomEditor(typeof(EnemyController))]
-public class EnemyControllerEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+//[CustomEditor(typeof(EnemyController))]
+//public class EnemyControllerEditor : Editor
+//{
+//       DrawDefaultInspector();
 
-        EnemyController EC = (EnemyController)target;
-        if (GUILayout.Button("Add Current Position"))
-        {
-            EC.addCurrentPosition();
-        }
-    }
-}
+//        EnemyController EC = (EnemyController)target;
+//        if (GUILayout.Button("Add Current Position"))
+//        {
+//            EC.addCurrentPosition();
+//        }
+//    }
+//}
