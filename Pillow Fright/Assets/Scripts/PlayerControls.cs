@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour {
 
@@ -197,7 +198,7 @@ public class PlayerControls : MonoBehaviour {
 	public void isDead()
 	{
 		noLife = true;
-		FindObjectOfType<LevelAdministrator>().Restart();
+		SceneManager.LoadScene("Game Over");
 		noLife = false;
 	}
 
@@ -206,6 +207,8 @@ public class PlayerControls : MonoBehaviour {
     {
 		if (col.tag == "Enemy" && noLife == false)
 			takeDamage();
+		if (col.tag == "Exit Point" && FindObjectOfType<DreamCatcher>().isAllFound())
+			SceneManager.LoadScene("Game Over");
 
 	}
 

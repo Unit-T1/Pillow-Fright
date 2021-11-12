@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Enemy
   - Dream Catcher
+  - Exit Point
   layers:
   - Default
   - TransparentFX
