@@ -11,7 +11,7 @@ public class PlayerControls : MonoBehaviour {
 	public float jumpPower = 200f;	    //Determines jump height
 
 	public bool grounded;           	//Checks for contact with ground
-	//bool sprinting;          			//Checks if player is sprinting
+	public bool sprinting;          	//Checks if player is sprinting
     bool hasPillow;						//Checks if player has pillow
 	public bool noLife;                 //Checks if player is dead
 	public bool isInvulnerable;
@@ -62,14 +62,14 @@ public class PlayerControls : MonoBehaviour {
 		{
 			maxSpeed = maxSpeed * sprintFactor;
 			speed = speed * sprintFactor;
-			//sprinting = true;
+			sprinting = true;
 			anim.SetBool("sprinting", true);
 		}
 		if (Input.GetKeyUp(KeyCode.LeftShift))
 		{
 			maxSpeed = maxSpeed / sprintFactor;
 			speed = speed / sprintFactor;
-			//sprinting = false;
+			sprinting = false;
 			anim.SetBool("sprinting", false);
 		}
 
@@ -91,12 +91,28 @@ public class PlayerControls : MonoBehaviour {
 			//Neutral 3
 			if (Input.GetKeyDown(KeyCode.X) && grounded && attacking && anim.GetInteger("attack num") == 2)
 			{
-				StartCoroutine(Attack(attackDuration, 0.7f, 3, 70));
+				//attack left
+				if (Input.GetKey(KeyCode.LeftArrow))
+					StartCoroutine(Attack(attackDuration, 0.7f, 3, 70, -1));
+				//attack right
+				else if (Input.GetKey(KeyCode.RightArrow))
+					StartCoroutine(Attack(attackDuration, 0.7f, 3, 70, 1));
+				//attack forward
+				else
+					StartCoroutine(Attack(attackDuration, 0.7f, 3, 70, 0));
 			}
 			//Neutral 2
 			if (Input.GetKeyDown(KeyCode.X) && grounded && attacking && anim.GetInteger("attack num") == 1)
 			{
-				StartCoroutine(Attack(attackDuration, 0.6f, 2, 40));
+				//attack left
+				if (Input.GetKey(KeyCode.LeftArrow))
+					StartCoroutine(Attack(attackDuration, 0.6f, 2, 40, -1));
+				//attack right
+				else if (Input.GetKey(KeyCode.RightArrow))
+					StartCoroutine(Attack(attackDuration, 0.6f, 2, 40, 1));
+				//attack forward
+				else
+					StartCoroutine(Attack(attackDuration, 0.6f, 2, 40, 0));
 			}
 			//Ground Melee
 			if (Input.GetKeyDown(KeyCode.X) && grounded)
@@ -105,7 +121,7 @@ public class PlayerControls : MonoBehaviour {
 				if(!attacking && attackDuration <= 0)
                 {
 					attackDuration = 0.01f;
-					StartCoroutine(Attack(0, 0.5f, 1, 20));
+					StartCoroutine(Attack(0, 0.5f, 1, 20, 0));
 				}
 			}
 			
@@ -175,7 +191,7 @@ public class PlayerControls : MonoBehaviour {
         hasPillow = true;
     }
 
-	IEnumerator Attack(float lastDuration, float duration, int attackNum, float force)
+	IEnumerator Attack(float lastDuration, float duration, int attackNum, float force, int direction)
     {
 		rb.velocity = new Vector2(0, 0);
 		attacking = true;
@@ -184,6 +200,8 @@ public class PlayerControls : MonoBehaviour {
 		attackDuration = duration;
 		anim.SetInteger("attack num", attackNum);       //start next attack
 
+		if(direction != 0)								//0 = forward
+			transform.localScale = new Vector3(direction, 1, 1);
 		if (transform.localScale.x == -1)				//move forward a bit when attacking
 			rb.AddForce(new Vector2(-force, 0));
 		else
@@ -218,6 +236,7 @@ public class PlayerControls : MonoBehaviour {
 		{
 			FindObjectOfType<HealthBar>().LoseLife();
 			StartCoroutine("getInvulnerable");
+			StartCoroutine(knockback(0.4f, 0.3f, -transform.localScale.x));
 		}
 	}
 
@@ -237,5 +256,30 @@ public class PlayerControls : MonoBehaviour {
 		}
 		Physics2D.IgnoreLayerCollision(6, 7, false);
 		isInvulnerable = false;
+	}
+
+	public IEnumerator knockback(float duration, float power, float direction)
+	{
+		float lastSpeed = speed;
+		speed = 0f;
+
+		Vector3 startPos = transform.position;
+		Vector3 endPos = new Vector3(transform.position.x + power * direction, transform.position.y);
+		float timeElapsed = 0f;
+
+		while (transform.position != endPos)
+		{
+			if (timeElapsed < duration)
+			{
+				transform.position = Vector2.Lerp(startPos, endPos, (1 - (Mathf.Pow(1 - (timeElapsed / duration), 2))));
+				timeElapsed += Time.deltaTime;
+				yield return null;
+			}
+			else
+				transform.position = endPos;
+		}
+		transform.position = endPos;
+		speed = lastSpeed;
+		rb.velocity = Vector2.zero;
 	}
 }

@@ -18,7 +18,6 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -28,6 +27,8 @@ public class EnemyController : MonoBehaviour
 
         if(health <= 0)
         {
+            //Decrease meter by a certain amount on death
+            FindObjectOfType<DarkMeter>().StartCoroutine(FindObjectOfType<DarkMeter>().addMeter2(-10));
             Destroy(this.gameObject);
         }
     }
@@ -90,21 +91,52 @@ public class EnemyController : MonoBehaviour
         health -= damage;
     }
 
+    public IEnumerator knockback(float duration, float power, float direction)
+    {
+        float lastSpeed = speed;
+        speed = 0f;
+        GetComponent<BoxCollider2D>().enabled = false;
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new Vector3(transform.position.x + (power * direction), transform.position.y);
+        float timeElapsed = 0f;
+
+        while(transform.position != endPos)
+        {
+            if (timeElapsed < duration)
+            {
+                transform.position = Vector2.Lerp(startPos, endPos, (1 - (Mathf.Pow(1 - (timeElapsed / duration), 2))));
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+            else
+                transform.position = endPos;
+            //Debug.Log("Time elapsed = " + timeElapsed);
+        }
+        transform.position = endPos;
+
+        GetComponent<BoxCollider2D>().enabled = true;
+        speed = lastSpeed;
+    }
+
 }
 
 
 
+/*
 
+[CustomEditor(typeof(EnemyController))]
+public class EnemyControllerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
 
-//[CustomEditor(typeof(EnemyController))]
-//public class EnemyControllerEditor : Editor
-//{
-//       DrawDefaultInspector();
-
-//        EnemyController EC = (EnemyController)target;
-//        if (GUILayout.Button("Add Current Position"))
-//        {
-//            EC.addCurrentPosition();
-//        }
-//    }
-//}
+        EnemyController EC = (EnemyController)target;
+        if (GUILayout.Button("Add Current Position"))
+        {
+            EC.addCurrentPosition();
+        }
+    }
+}
+*/

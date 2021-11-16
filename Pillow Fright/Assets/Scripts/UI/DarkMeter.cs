@@ -78,19 +78,19 @@ public class DarkMeter : MonoBehaviour
     }
 
 
-    void resetMeter()
+    public void resetMeter()
     {
         StartCoroutine(addMeter2(-maxValue));
     }
 
-    void addMeter(float value)
+    public void addMeter(float value)
     {
         Mathf.Clamp(slider.value += value, 0, maxValue);
     }
 
     //Same as above except with an "ease out" function
     //Functions found here: https://www.febucci.com/2018/08/easing-functions/
-    IEnumerator addMeter2(float value)
+    public IEnumerator addMeter2(float value)
     {
         bool lerping = false;
         if (!lerping)
@@ -118,12 +118,12 @@ public class DarkMeter : MonoBehaviour
         }
     }
 
-    void pauseMeter()
+    public void pauseMeter()
     {
         isPaused = !isPaused;
     }
 
-    void toggleSafeZone()
+    public void toggleSafeZone()
     {
         inSafeZone = !inSafeZone;
     }
