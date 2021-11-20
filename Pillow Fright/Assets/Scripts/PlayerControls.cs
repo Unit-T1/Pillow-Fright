@@ -227,7 +227,6 @@ public class PlayerControls : MonoBehaviour {
 			takeDamage();
 		if (col.tag == "Exit Point" && FindObjectOfType<DreamCatcher>().isAllFound())
 			SceneManager.LoadScene("Game Over");
-
 	}
 
 	public void takeDamage()
