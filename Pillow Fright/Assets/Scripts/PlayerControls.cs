@@ -11,7 +11,12 @@ public class PlayerControls : MonoBehaviour {
 	public float jumpPower = 200f;	    //Determines jump height
 
 	public bool grounded;           	//Checks for contact with ground
-	public bool sprinting;          	//Checks if player is sprinting
+	public bool sprinting;              //Checks if player is sprinting
+	private float sprintSpeed;
+	private float maxSprintSpeed;
+	private float initialSpeed;
+	private float initialMaxSpeed;
+
     bool hasPillow;						//Checks if player has pillow
 	public bool noLife;                 //Checks if player is dead
 	public bool isInvulnerable;
@@ -32,6 +37,11 @@ public class PlayerControls : MonoBehaviour {
 		isInvulnerable = false;
 		noLife = false;
         hasPillow = false;
+		sprintSpeed = speed * sprintFactor;
+		maxSprintSpeed = maxSpeed * sprintFactor;
+		initialSpeed = speed;
+		initialMaxSpeed = maxSpeed;
+
 		rb = gameObject.GetComponent<Rigidbody2D>();	//store rigidbody component
 		anim = gameObject.GetComponent<Animator>();     //store animation component
 		myRender = GetComponent<SpriteRenderer>();	
@@ -44,32 +54,39 @@ public class PlayerControls : MonoBehaviour {
 		if (movement)	//disable movement when attacking
 		{
 			//Jump
-			if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow)) && grounded)
+			if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && grounded)
 			{
 				rb.velocity = new Vector2(rb.velocity.x, 0f);
 				rb.AddForce(Vector2.up * jumpPower);
 			}
 
 			//Control Jump Height
-			if ((Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.UpArrow)) && rb.velocity.y >= 0.1)
+			if ((Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && rb.velocity.y >= 0.1)
 			{
 				rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2); //Slows down y-axis momentum
 			}
 		}
 
 		//Sprint
-		if (Input.GetKeyDown(KeyCode.LeftShift))
+		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetMouseButtonDown(1))
 		{
-			maxSpeed = maxSpeed * sprintFactor;
-			speed = speed * sprintFactor;
 			sprinting = true;
+		}
+		if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetMouseButtonUp(1))
+		{
+			sprinting = false;
+		}
+
+        if (sprinting)
+        {
+			speed = sprintSpeed;
+			maxSpeed = maxSprintSpeed;
 			anim.SetBool("sprinting", true);
 		}
-		if (Input.GetKeyUp(KeyCode.LeftShift))
-		{
-			maxSpeed = maxSpeed / sprintFactor;
-			speed = speed / sprintFactor;
-			sprinting = false;
+        else if(!sprinting && grounded)
+        {
+			speed = initialSpeed;
+			maxSpeed = initialMaxSpeed;
 			anim.SetBool("sprinting", false);
 		}
 
@@ -89,7 +106,7 @@ public class PlayerControls : MonoBehaviour {
         if (hasPillow)
         {
 			//Neutral 3
-			if (Input.GetKeyDown(KeyCode.X) && grounded && attacking && anim.GetInteger("attack num") == 2)
+			if ((Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0)) && grounded && attacking && anim.GetInteger("attack num") == 2)
 			{
 				//attack left
 				if (Input.GetKey(KeyCode.LeftArrow))
@@ -102,7 +119,7 @@ public class PlayerControls : MonoBehaviour {
 					StartCoroutine(Attack(attackDuration, 0.7f, 3, 70, 0));
 			}
 			//Neutral 2
-			if (Input.GetKeyDown(KeyCode.X) && grounded && attacking && anim.GetInteger("attack num") == 1)
+			if ((Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0)) && grounded && attacking && anim.GetInteger("attack num") == 1)
 			{
 				//attack left
 				if (Input.GetKey(KeyCode.LeftArrow))
@@ -115,7 +132,7 @@ public class PlayerControls : MonoBehaviour {
 					StartCoroutine(Attack(attackDuration, 0.6f, 2, 40, 0));
 			}
 			//Ground Melee
-			if (Input.GetKeyDown(KeyCode.X) && grounded)
+			if ((Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0)) && grounded)
             {
 				//Neutral 1
 				if(!attacking && attackDuration <= 0)
@@ -126,7 +143,7 @@ public class PlayerControls : MonoBehaviour {
 			}
 			
 			//Air Melee
-			if (Input.GetKeyDown(KeyCode.X) && !grounded)
+			if ((Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0)) && !grounded)
             {
 				if (!attacking && attackDuration <= 0)
 				{
