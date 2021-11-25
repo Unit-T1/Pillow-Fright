@@ -13,6 +13,8 @@ public class DarkMeter : MonoBehaviour
     public float lerpDuration = 1f;     //Determines the duration of the lerp animation (in sec)
 
     private Slider slider;
+    public Image eyeball;
+    public Sprite[] eyeballSprites;     //0 = open, 5 = closed
 
     void Start()
     {
@@ -45,6 +47,28 @@ public class DarkMeter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             pauseMeter();
+        }
+
+        //Eyeball checks
+        if(slider.value >= 100)
+        {
+            eyeball.sprite = eyeballSprites[4];
+        }
+        else if(slider.value >= 75)
+        {
+            eyeball.sprite = eyeballSprites[3];
+        }
+        else if (slider.value >= 50)
+        {
+            eyeball.sprite = eyeballSprites[2];
+        }
+        else if (slider.value >= 25)
+        {
+            eyeball.sprite = eyeballSprites[1];
+        }
+        else
+        {
+            eyeball.sprite = eyeballSprites[0];
         }
     }
 
