@@ -15,14 +15,14 @@
 > Find your pillow (and dream catchers) and fight your way out of this nightmare before it's too late!  
 
 # Controls  
-> Arrows (Left/Right) - Movement  
-> Z or Up - Jump  
-> X - Melee  
-> LShift - Sprint  
+> Arrows or WASD - Movement  
+> Z or UP or W - Jump  
+> X or LClick- Melee  
+> LShift or RClick - Sprint  
 
 ---
 <p align="center">
   <b>Game Preview (wip):</b><br>
   <br>
-  <img src="https://raw.githubusercontent.com/Unit-T1/Pillow-Fright/main/Concepts/Update%20Gifs/Dream%20Catcher%20Update.gif?token=AJTRLJPDA7PE3NHYIV7R2S3BRMVU6">
+  <img src="https://user-images.githubusercontent.com/40310181/143508810-befc0ced-b0cf-4da3-b683-46eb9ee87049.gif">
 </p>
