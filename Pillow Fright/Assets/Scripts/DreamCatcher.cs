@@ -11,7 +11,7 @@ public class DreamCatcher : MonoBehaviour
     public Text dreamsLeftText;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         DRs = GameObject.FindGameObjectsWithTag("Dream Catcher");
         dreamsLeft = DRs.Length;

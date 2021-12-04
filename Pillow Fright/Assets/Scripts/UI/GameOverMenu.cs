@@ -5,9 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
+    private int previousScene;
+
+    public void Start()
+    {
+        previousScene = SceneManager.GetActiveScene().buildIndex - 1;
+    }
+
     public void RestartButton()
     {
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene(previousScene);
     }
 
     public void MenuButton()
