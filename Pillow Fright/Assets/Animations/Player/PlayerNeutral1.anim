@@ -274,19 +274,19 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1527080216023248906, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe,
+      value: {fileID: 5744964137447737237, guid: 2df8cf315df256942b3e943185a71ca0,
         type: 3}
     - time: 0.1
-      value: {fileID: 8134221174296847712, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe,
+      value: {fileID: -341921956088184687, guid: 2df8cf315df256942b3e943185a71ca0,
         type: 3}
     - time: 0.2
-      value: {fileID: -1063918620562343545, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe,
+      value: {fileID: 324710226873409459, guid: 2df8cf315df256942b3e943185a71ca0,
         type: 3}
     - time: 0.3
-      value: {fileID: 4088002405709066569, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe,
+      value: {fileID: -4678867278950366037, guid: 2df8cf315df256942b3e943185a71ca0,
         type: 3}
     - time: 0.4
-      value: {fileID: -9016874566134013745, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe,
+      value: {fileID: -6989815490981770342, guid: 2df8cf315df256942b3e943185a71ca0,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -387,11 +387,11 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -1527080216023248906, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe, type: 3}
-    - {fileID: 8134221174296847712, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe, type: 3}
-    - {fileID: -1063918620562343545, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe, type: 3}
-    - {fileID: 4088002405709066569, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe, type: 3}
-    - {fileID: -9016874566134013745, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe, type: 3}
+    - {fileID: 5744964137447737237, guid: 2df8cf315df256942b3e943185a71ca0, type: 3}
+    - {fileID: -341921956088184687, guid: 2df8cf315df256942b3e943185a71ca0, type: 3}
+    - {fileID: 324710226873409459, guid: 2df8cf315df256942b3e943185a71ca0, type: 3}
+    - {fileID: -4678867278950366037, guid: 2df8cf315df256942b3e943185a71ca0, type: 3}
+    - {fileID: -6989815490981770342, guid: 2df8cf315df256942b3e943185a71ca0, type: 3}
     - {fileID: 6986909644191645119, guid: 6c94c6e7d4047b243a1c4ce8679b20ab, type: 3}
     - {fileID: 8842137282393350195, guid: 6c94c6e7d4047b243a1c4ce8679b20ab, type: 3}
     - {fileID: 5907201379437599699, guid: 6c94c6e7d4047b243a1c4ce8679b20ab, type: 3}

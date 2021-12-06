@@ -54,14 +54,14 @@ public class PlayerControls : MonoBehaviour {
 		if (movement)	//disable movement when attacking
 		{
 			//Jump
-			if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && grounded)
+			if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && grounded)
 			{
 				rb.velocity = new Vector2(rb.velocity.x, 0f);
 				rb.AddForce(Vector2.up * jumpPower);
 			}
 
 			//Control Jump Height
-			if ((Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && rb.velocity.y >= 0.1)
+			if ((Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space)) && rb.velocity.y >= 0.1)
 			{
 				rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 2); //Slows down y-axis momentum
 			}
@@ -109,10 +109,10 @@ public class PlayerControls : MonoBehaviour {
 			if ((Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0)) && grounded && attacking && anim.GetInteger("attack num") == 2)
 			{
 				//attack left
-				if (Input.GetKey(KeyCode.LeftArrow))
+				if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
 					StartCoroutine(Attack(attackDuration, 0.7f, 3, 70, -1));
 				//attack right
-				else if (Input.GetKey(KeyCode.RightArrow))
+				else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
 					StartCoroutine(Attack(attackDuration, 0.7f, 3, 70, 1));
 				//attack forward
 				else
@@ -122,10 +122,10 @@ public class PlayerControls : MonoBehaviour {
 			if ((Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0)) && grounded && attacking && anim.GetInteger("attack num") == 1)
 			{
 				//attack left
-				if (Input.GetKey(KeyCode.LeftArrow))
+				if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
 					StartCoroutine(Attack(attackDuration, 0.6f, 2, 40, -1));
 				//attack right
-				else if (Input.GetKey(KeyCode.RightArrow))
+				else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
 					StartCoroutine(Attack(attackDuration, 0.6f, 2, 40, 1));
 				//attack forward
 				else
