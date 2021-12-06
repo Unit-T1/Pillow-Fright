@@ -2589,6 +2589,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 999020176, guid: 4d4cd56ed3be72349b11c04d51410fbc, type: 3}
+      propertyPath: dreamsLeftText
+      value: 
+      objectReference: {fileID: 1554441080}
     - target: {fileID: 9147923427665212549, guid: 4d4cd56ed3be72349b11c04d51410fbc,
         type: 3}
       propertyPath: noLife
@@ -3051,27 +3055,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b16da764308fa5949b8d02d46d128cd0, type: 3}
---- !u!1 &999020175 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9147923427665212668, guid: 4d4cd56ed3be72349b11c04d51410fbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 894314209}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &999020176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999020175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39f9e4ae8b422dc4084c9aeba903f05e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dreamsLeft: 0
-  allFound: 0
-  dreamsLeftText: {fileID: 1554441080}
 --- !u!4 &999020183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9147923427665212667, guid: 4d4cd56ed3be72349b11c04d51410fbc,

@@ -1145,27 +1145,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &396192675 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9147923427665212668, guid: 4d4cd56ed3be72349b11c04d51410fbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 508603879}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &396192682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 396192675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39f9e4ae8b422dc4084c9aeba903f05e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dreamsLeft: 0
-  allFound: 0
-  dreamsLeftText: {fileID: 1865215586}
 --- !u!4 &396192683 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9147923427665212667, guid: 4d4cd56ed3be72349b11c04d51410fbc,
@@ -146681,6 +146660,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 999020176, guid: 4d4cd56ed3be72349b11c04d51410fbc, type: 3}
+      propertyPath: dreamsLeftText
+      value: 
+      objectReference: {fileID: 1865215586}
     - target: {fileID: 9147923427665212549, guid: 4d4cd56ed3be72349b11c04d51410fbc,
         type: 3}
       propertyPath: noLife
