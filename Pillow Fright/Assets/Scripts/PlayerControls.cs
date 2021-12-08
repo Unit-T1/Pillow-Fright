@@ -9,7 +9,7 @@ public class PlayerControls : MonoBehaviour {
 	public float sprintFactor = 2f; 	//Determines how fast sprinting is
 	public float speed = 50f;		    //Determines player speed
 	public float jumpPower = 200f;	    //Determines jump height
-
+	 
 	public bool grounded;           	//Checks for contact with ground
 	public bool sprinting;              //Checks if player is sprinting
 	private float sprintSpeed;
@@ -31,6 +31,7 @@ public class PlayerControls : MonoBehaviour {
 
 	public Color myColor;
 	public SpriteRenderer myRender;
+	public static int currentScene;
 
 	void Start()
     {
@@ -46,6 +47,8 @@ public class PlayerControls : MonoBehaviour {
 		anim = gameObject.GetComponent<Animator>();     //store animation component
 		myRender = GetComponent<SpriteRenderer>();	
 		myColor = myRender.material.color;
+
+		currentScene = SceneManager.GetActiveScene().buildIndex;
 	}
 
 	void Update()
