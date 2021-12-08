@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
-    private int previousScene;
+    int previousScene = 0;
 
     public void Start()
     {
-        previousScene = SceneManager.GetActiveScene().buildIndex - 1;
+        previousScene = PlayerControls.currentScene;
     }
 
     public void RestartButton()
