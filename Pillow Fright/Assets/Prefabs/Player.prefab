@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 9147923427665212666}
   - component: {fileID: 9147923427665212671}
   - component: {fileID: 9147923427665212549}
-  - component: {fileID: 396192682}
+  - component: {fileID: 999020176}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -229,8 +229,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -68470092142300397, guid: 7ffdca4e19e5bf04ab8fd281a1d4c0fe, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 2940171003169873009, guid: 2df8cf315df256942b3e943185a71ca0,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -346,11 +347,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  hasLife: {fileID: 21300000, guid: fed24bd82cefc0c4a8ef64dab6231b53, type: 3}
-  noLife: {fileID: 21300002, guid: fed24bd82cefc0c4a8ef64dab6231b53, type: 3}
+  hasLife: {fileID: 21300000, guid: 55490058b312c244090a6eb9a6eb4acb, type: 3}
+  noLife: {fileID: 21300002, guid: 55490058b312c244090a6eb9a6eb4acb, type: 3}
   lives: 4
   numOfLives: 4
---- !u!114 &396192682
+--- !u!114 &999020176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
