@@ -2720,6 +2720,15 @@ PrefabInstance:
       propertyPath: dreamsLeftText
       value: 
       objectReference: {fileID: 1554441080}
+    - target: {fileID: 1062878544, guid: 4d4cd56ed3be72349b11c04d51410fbc, type: 3}
+      propertyPath: dreamsLeftText
+      value: 
+      objectReference: {fileID: 1554441080}
+    - target: {fileID: 9023848266980715159, guid: 4d4cd56ed3be72349b11c04d51410fbc,
+        type: 3}
+      propertyPath: dreamsLeftText
+      value: 
+      objectReference: {fileID: 1554441080}
     - target: {fileID: 9147923427665212549, guid: 4d4cd56ed3be72349b11c04d51410fbc,
         type: 3}
       propertyPath: noLife

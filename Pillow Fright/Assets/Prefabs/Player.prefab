@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 9147923427665212666}
   - component: {fileID: 9147923427665212671}
   - component: {fileID: 9147923427665212549}
-  - component: {fileID: 999020176}
+  - component: {fileID: 1062878544}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -351,7 +351,7 @@ MonoBehaviour:
   noLife: {fileID: 21300002, guid: 55490058b312c244090a6eb9a6eb4acb, type: 3}
   lives: 4
   numOfLives: 4
---- !u!114 &999020176
+--- !u!114 &1062878544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
